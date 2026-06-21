@@ -12,8 +12,8 @@ body{background:var(--navy);color:var(--cream);font-family:-apple-system,BlinkMa
 .wrap{max-width:1280px;margin:0 auto;padding:0 28px}
 header{position:sticky;top:0;z-index:20;background:rgba(12,16,38,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{font-family:Georgia,'Times New Roman',serif;letter-spacing:.32em;font-size:19px;color:var(--cream);border:1px solid var(--gold);padding:9px 16px;text-decoration:none;line-height:1}
-.logo small{display:block;letter-spacing:.2em;font-size:9px;color:var(--gold);text-align:center;margin-top:3px}
+.logo{display:inline-flex;align-items:center;background:#fff;padding:7px 12px;border-radius:8px;text-decoration:none;line-height:0;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.logo img{height:40px;width:auto;display:block}
 nav a{color:var(--muted);text-decoration:none;margin-left:26px;font-size:13.5px;letter-spacing:.04em}
 nav a:hover{color:var(--cream)}
 nav a.wa{color:#fff;background:#1f2a5a;padding:9px 16px;border-radius:30px;margin-left:26px}
@@ -45,7 +45,7 @@ nav a.wa{color:#fff;background:#1f2a5a;padding:9px 16px;border-radius:30px;margi
 </head>
 <body>
 <header><div class="wrap bar">
-  <a class="logo" href="#">TIV HARAHIT<small>טיב הרהיט</small></a>
+  <a class="logo" href="#"><img src="https://tivharahit.com/wp-content/uploads/2017/01/THlogo-250px.png" alt="Tiv Harahit Fine Furniture"></a>
   <nav>
     <a href="#catalog">Catalog</a>
     <a href="https://tivharahit.com/" target="_blank">Home</a>
@@ -222,6 +222,9 @@ btns.forEach(b=>b.addEventListener('click',()=>{
   cards.forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';});
   window.scrollTo({top:document.getElementById('catalog').offsetTop-90,behavior:'smooth'});
 }));
+document.querySelectorAll('.card img').forEach(im=>im.addEventListener('error',()=>{im.style.display='none';im.parentElement.style.background='linear-gradient(135deg,#11193a,#0e1430)';}));
+const pc=new URLSearchParams(location.search).get('cat');
+if(pc){const b=[...btns].find(x=>x.dataset.f===pc);if(b){btns.forEach(x=>x.classList.remove('active'));b.classList.add('active');cards.forEach(c=>{c.style.display=(c.dataset.cat===pc)?'':'none';});}}
 </script>
 </body>
 </html>
